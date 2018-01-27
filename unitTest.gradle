@@ -1,0 +1,4 @@
+dependencies {
+    testApi 'junit:junit:4.12'
+    testApi "org.mockito:mockito-core:2.13.0"
+}

@@ -1,12 +1,7 @@
-package com.denisbrandi.app.domain.model
+package com.denisbrandi.app.data.network.model
 
-import android.annotation.SuppressLint
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 
-@SuppressLint("ParcelCreator")
-@Parcelize
-open class Stargazer(
+open class NetworkStargazer(
         val id: Int = 0,
         val login: String? = null,
         val avatarUrl: String? = null,
@@ -24,4 +19,4 @@ open class Stargazer(
         val receivedEventsUrl: String? = null,
         val type: String? = null,
         val siteAdmin: Boolean = false
-) : Parcelable
+)
