@@ -6,6 +6,6 @@ import io.reactivex.Observable
 
 interface StargazerRepository {
 
-    fun getStargazers(owner: String, repo: String): Observable<List<Stargazer>>
+    fun getStargazers(owner: String, repo: String, page: Int): Observable<List<Stargazer>>
 
 }
