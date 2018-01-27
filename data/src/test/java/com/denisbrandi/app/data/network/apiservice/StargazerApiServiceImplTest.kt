@@ -32,7 +32,7 @@ class StargazerApiServiceImplTest {
     @Mock private lateinit var networkStargazers: List<NetworkStargazer>
     @Mock private lateinit var stargazers: List<Stargazer>
 
-    @Mock private lateinit var stargazersApi: StargazerApi
+    @Mock private lateinit var stargazerApi: StargazerApi
     @Mock private lateinit var stargazerNetworkMapper: StargazerNetworkMapper
 
     private var exception: Exception = Exception()
@@ -42,27 +42,27 @@ class StargazerApiServiceImplTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        apiService = StargazerApiServiceImpl(stargazersApi, stargazerNetworkMapper)
+        apiService = StargazerApiServiceImpl(stargazerApi, stargazerNetworkMapper)
     }
 
     @Test
     fun getStargazers_should_returnError_when_apiReturnError() {
-        `when`(stargazersApi.getStargazers(REPO, OWNER, PAGE))
+        `when`(stargazerApi.getStargazers(OWNER, REPO, PAGE))
                 .thenReturn(Single.error(exception))
 
-        val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(REPO, OWNER, PAGE).test()
+        val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(OWNER, REPO, PAGE).test()
 
         testObserver.assertError(exception)
     }
 
     @Test
     fun getStargazers_should_returnStargazers_when_apiReturnNetworkStargazersAndMapperReturnStargazers() {
-        `when`(stargazersApi.getStargazers(REPO, OWNER, PAGE))
+        `when`(stargazerApi.getStargazers(OWNER, REPO, PAGE))
                 .thenReturn(Single.just(networkStargazers))
         `when`(stargazerNetworkMapper.getStargazers(networkStargazers))
                 .thenReturn(stargazers)
 
-        val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(REPO, OWNER, PAGE).test()
+        val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(OWNER, REPO, PAGE).test()
 
         testObserver.assertComplete()
         testObserver.assertValueAt(0, stargazers)
