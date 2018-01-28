@@ -13,12 +13,12 @@ import org.mockito.MockitoAnnotations
 
 class StargazerListMapperTest {
 
-    val stargazers: ArrayList<Stargazer> = ArrayList()
-    val networkStargazers: ArrayList<NetworkStargazer> = ArrayList()
+    private val stargazers: ArrayList<Stargazer> = ArrayList()
+    private val networkStargazers: ArrayList<NetworkStargazer> = ArrayList()
 
-    @Mock lateinit var stargazerMapper: Mapper<Stargazer, NetworkStargazer>
+    @Mock private lateinit var stargazerMapper: Mapper<Stargazer, NetworkStargazer>
 
-    lateinit var mapper: StargazerListMapper
+    private lateinit var mapper: StargazerListMapper
 
     @Before
     fun setUp() {
