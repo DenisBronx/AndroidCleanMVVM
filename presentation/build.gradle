@@ -1,0 +1,9 @@
+apply plugin: 'com.android.library'
+apply from: "../plugins.gradle"
+apply from: "../androidConfig.gradle"
+apply from: "../unitTest.gradle"
+apply from: "../presentation/presentationDependencies.gradle"
+
+dependencies {
+    api project(':domain')
+}
