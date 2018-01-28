@@ -1,7 +1,7 @@
 package com.denisbrandi.app.data.network.apiservice
 
+import com.denisbrandi.app.data.mapper.ListMapper
 import com.denisbrandi.app.data.network.api.StargazerApi
-import com.denisbrandi.app.data.network.mapper.StargazerNetworkMapper
 import com.denisbrandi.app.data.network.model.NetworkStargazer
 import com.denisbrandi.app.domain.model.Stargazer
 import io.reactivex.Single
@@ -9,7 +9,6 @@ import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import com.denisbrandi.app.testutils.RxSchedulersOverrideRule
@@ -33,7 +32,7 @@ class StargazerApiServiceImplTest {
     @Mock private lateinit var stargazers: List<Stargazer>
 
     @Mock private lateinit var stargazerApi: StargazerApi
-    @Mock private lateinit var stargazerNetworkMapper: StargazerNetworkMapper
+    @Mock private lateinit var stargazerListMapper: ListMapper<Stargazer, NetworkStargazer>
 
     private var exception: Exception = Exception()
 
@@ -42,7 +41,7 @@ class StargazerApiServiceImplTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        apiService = StargazerApiServiceImpl(stargazerApi, stargazerNetworkMapper)
+        apiService = StargazerApiServiceImpl(stargazerApi, stargazerListMapper)
     }
 
     @Test
@@ -59,7 +58,7 @@ class StargazerApiServiceImplTest {
     fun getStargazers_should_returnStargazers_when_apiReturnNetworkStargazersAndMapperReturnStargazers() {
         `when`(stargazerApi.getStargazers(OWNER, REPO, PAGE))
                 .thenReturn(Single.just(networkStargazers))
-        `when`(stargazerNetworkMapper.getStargazers(networkStargazers))
+        `when`(stargazerListMapper.mapToEntityList(networkStargazers))
                 .thenReturn(stargazers)
 
         val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(OWNER, REPO, PAGE).test()
