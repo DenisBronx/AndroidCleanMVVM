@@ -13,8 +13,8 @@ import org.mockito.MockitoAnnotations
 
 class StargazerListMapperTest {
 
-    private val stargazers: ArrayList<Stargazer> = ArrayList()
-    private val networkStargazers: ArrayList<NetworkStargazer> = ArrayList()
+    private val stargazers = ArrayList<Stargazer>()
+    private val networkStargazers = ArrayList<NetworkStargazer>()
 
     @Mock private lateinit var stargazerMapper: Mapper<Stargazer, NetworkStargazer>
 
@@ -49,7 +49,7 @@ class StargazerListMapperTest {
 
     @Test
     fun mapToEntityList_should_returnEmpty_when_inputIsEmpty() {
-        val result: List<Stargazer> = mapper.mapToEntityList(networkStargazers)
+        val result = mapper.mapToEntityList(networkStargazers)
 
         assertTrue(result.isEmpty())
         verifyZeroInteractions(stargazerMapper)

@@ -18,18 +18,18 @@ class StargazerMapperTest {
 
     @Test
     fun mapFromEntity_should_returnValidObject() {
-        val networkStargazer: NetworkStargazer = getNetworkStargazer()
+        val networkStargazer = getNetworkStargazer()
 
-        val stargazer: Stargazer = mapper.mapToEntity(networkStargazer)
+        val stargazer = mapper.mapToEntity(networkStargazer)
 
         assertStargazer(networkStargazer, stargazer)
     }
 
     @Test
     fun mapToEntity_should_returnValidObject() {
-        val stargazer: Stargazer = getStargazer()
+        val stargazer = getStargazer()
 
-        val networkStargazer: NetworkStargazer = mapper.mapFromEntity(stargazer)
+        val networkStargazer = mapper.mapFromEntity(stargazer)
 
         assertStargazer(networkStargazer, stargazer)
     }

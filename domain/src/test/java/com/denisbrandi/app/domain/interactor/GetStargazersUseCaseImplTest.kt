@@ -21,7 +21,7 @@ class GetStargazersUseCaseImplTest {
     @Mock private lateinit var repository: StargazerRepository
     @Mock private lateinit var stargazers: List<Stargazer>
 
-    private var exception : Exception = Exception()
+    private var exception = Exception()
 
     private lateinit var useCase : GetStargazersUseCaseImpl
 

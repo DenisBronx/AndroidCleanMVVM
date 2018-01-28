@@ -1,6 +1,5 @@
 package com.denisbrandi.app.presentation.pagination
 
-import io.reactivex.subjects.PublishSubject
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

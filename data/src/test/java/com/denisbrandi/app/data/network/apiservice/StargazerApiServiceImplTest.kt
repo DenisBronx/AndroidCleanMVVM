@@ -5,7 +5,6 @@ import com.denisbrandi.app.data.network.api.StargazerApi
 import com.denisbrandi.app.data.network.model.NetworkStargazer
 import com.denisbrandi.app.domain.model.Stargazer
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
 
@@ -34,7 +33,7 @@ class StargazerApiServiceImplTest {
     @Mock private lateinit var stargazerApi: StargazerApi
     @Mock private lateinit var stargazerListMapper: ListMapper<Stargazer, NetworkStargazer>
 
-    private var exception: Exception = Exception()
+    private var exception = Exception()
 
     lateinit private var apiService: StargazerApiServiceImpl
 
@@ -49,7 +48,7 @@ class StargazerApiServiceImplTest {
         `when`(stargazerApi.getStargazers(OWNER, REPO, PAGE))
                 .thenReturn(Single.error(exception))
 
-        val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(OWNER, REPO, PAGE).test()
+        val testObserver = apiService.getStargazers(OWNER, REPO, PAGE).test()
 
         testObserver.assertError(exception)
     }
@@ -61,7 +60,7 @@ class StargazerApiServiceImplTest {
         `when`(stargazerListMapper.mapToEntityList(networkStargazers))
                 .thenReturn(stargazers)
 
-        val testObserver: TestObserver<List<Stargazer>> = apiService.getStargazers(OWNER, REPO, PAGE).test()
+        val testObserver = apiService.getStargazers(OWNER, REPO, PAGE).test()
 
         testObserver.assertComplete()
         testObserver.assertValueAt(0, stargazers)

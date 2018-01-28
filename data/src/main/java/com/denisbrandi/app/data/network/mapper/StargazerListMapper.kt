@@ -9,9 +9,9 @@ import com.denisbrandi.app.domain.model.Stargazer
 class StargazerListMapper(private val mapper: Mapper<Stargazer, NetworkStargazer>) : ListMapper<Stargazer, NetworkStargazer> {
 
     override fun mapFromEntityList(domainType: List<Stargazer>): List<NetworkStargazer> {
-        val networkstargazers: ArrayList<NetworkStargazer> = ArrayList()
-        domainType.mapTo(networkstargazers) { mapper.mapFromEntity(it) }
-        return networkstargazers
+        val networkStargazers: ArrayList<NetworkStargazer> = ArrayList()
+        domainType.mapTo(networkStargazers) { mapper.mapFromEntity(it) }
+        return networkStargazers
     }
 
     override fun mapToEntityList(dataType: List<NetworkStargazer>): List<Stargazer> {
