@@ -10,7 +10,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
-class GetStargazersUseCaseImplTest {
+class GetStargazersUseCaseTest {
 
     companion object {
         const val REPO = "repo"
@@ -23,12 +23,12 @@ class GetStargazersUseCaseImplTest {
 
     private var exception = Exception()
 
-    private lateinit var useCase : GetStargazersUseCaseImpl
+    private lateinit var useCase : GetStargazersUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = GetStargazersUseCaseImpl(repository)
+        useCase = GetStargazersUseCase(repository)
     }
 
     @Test
