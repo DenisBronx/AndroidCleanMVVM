@@ -2,23 +2,15 @@ package com.denisbrandi.app.data.repository
 
 import com.denisbrandi.app.data.network.apiservice.StargazerApiService
 import com.denisbrandi.app.domain.model.Stargazer
-import com.denisbrandi.app.testutils.RxSchedulersOverrideRule
 import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
-import org.junit.Rule
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 class StargazerRepositoryImplTest {
-
-    @Rule
-    @JvmField
-    val mOverrideSchedulersRule = RxSchedulersOverrideRule()
 
     companion object {
         const val REPO = "repo"

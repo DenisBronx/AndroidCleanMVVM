@@ -36,7 +36,7 @@ class GetStargazersUseCaseTest {
         `when`(repository.getStargazers(OWNER, REPO, PAGE))
                 .thenReturn(Observable.error(exception))
 
-        val testObserver: TestObserver<List<Stargazer>> = useCase.getStargazers(OWNER, REPO, PAGE).test()
+        val testObserver: TestObserver<List<Stargazer>> = useCase.execute(OWNER, REPO, PAGE).test()
 
         testObserver.assertError(exception)
     }
@@ -46,7 +46,7 @@ class GetStargazersUseCaseTest {
         `when`(repository.getStargazers(OWNER, REPO, PAGE))
                 .thenReturn(Observable.just(stargazers))
 
-        val testObserver: TestObserver<List<Stargazer>> = useCase.getStargazers(OWNER, REPO, PAGE).test()
+        val testObserver: TestObserver<List<Stargazer>> = useCase.execute(OWNER, REPO, PAGE).test()
 
         testObserver.assertComplete()
         testObserver.assertValueAt(0, stargazers)

@@ -5,9 +5,9 @@ import com.denisbrandi.app.domain.repository.StargazerRepository
 import io.reactivex.Observable
 
 
-class GetStargazersUseCase(private var stargazerRepository: StargazerRepository) {
+open class GetStargazersUseCase(private var stargazerRepository: StargazerRepository) {
 
-    fun getStargazers(owner: String, repo: String, page: Int): Observable<List<Stargazer>> {
+    open fun execute(owner: String, repo: String, page: Int): Observable<List<Stargazer>> {
         return stargazerRepository.getStargazers(owner, repo, page)
     }
 }
