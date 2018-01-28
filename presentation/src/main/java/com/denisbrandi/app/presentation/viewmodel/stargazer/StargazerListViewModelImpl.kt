@@ -23,12 +23,13 @@ open class StargazerListViewModelImpl(private val getStargazersUseCase: GetStarg
         if (getContent().get().isEmpty()) {
             showLoadingState()
         }
-        getStargazersUseCase.execute(owner.get(), repo.get(), paginator.getPage())
+        addDisposable(getStargazersUseCase.execute(owner.get(), repo.get(), paginator.getPage())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { onSuccess(it) },
                         { onFail(it) }
                 )
+        )
     }
 
     override fun onCleared() {
